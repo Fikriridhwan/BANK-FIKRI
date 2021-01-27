@@ -3,6 +3,6 @@
 # and open the template in the editor.
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
-ADD docker.jar app.jar
+ADD target/docker-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8088
