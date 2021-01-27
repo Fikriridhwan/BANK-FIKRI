@@ -5,8 +5,9 @@
  */
 package Java.Docker.repositories;
 
-import Java.Docker.entities.Transaction;
+import Java.Docker.entities.Nasabah;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +15,6 @@ import org.springframework.stereotype.Repository;
  * @author User
  */
 @Repository
-public interface TransactionRepository extends JpaRepository<Transaction, Integer>{
-    
+public interface NasabahRepository extends JpaRepository<Nasabah, Integer>{
+    Nasabah findByKtp(@Param("ktp") String ktp);
 }

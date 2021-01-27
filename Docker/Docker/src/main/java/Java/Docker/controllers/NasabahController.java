@@ -5,8 +5,8 @@
  */
 package Java.Docker.controllers;
 
-import Java.Docker.entities.Transaction;
-import Java.Docker.services.TransactionService;
+import Java.Docker.entities.Nasabah;
+import Java.Docker.services.NasabahService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,49 +17,61 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author User
  */
-@RequestMapping("api/transaction")
+@RequestMapping("api/nasabah")
 @RestController
-public class TransactionController {
+public class NasabahController {
 
-    TransactionService service;
+    NasabahService service;
 
     @Autowired
-    public TransactionController(TransactionService service) {
+    public NasabahController(NasabahService service) {
         this.service = service;
     }
-    
+
     @GetMapping("")
-    public List<Transaction> getAll(){
+    public List<Nasabah> getAll() {
         return service.getAll();
     }
-    
-    @GetMapping("{id}")
-    public Transaction getById(@PathVariable int id) {
-        return service.getById(id);
+
+    @GetMapping("/search/{ktp}")
+    public Nasabah getByKtp(@PathVariable String ktp) {
+        return service.findByKtp(ktp);
     }
-    
+
     @PostMapping("/save")
-    public Transaction insert(@RequestBody Transaction transaction) {
-        Transaction result = service.save(transaction);
+    public Nasabah insert(@RequestBody Nasabah nasabah) {
+        if (nasabah.getId() != 0) {
+            Nasabah temp = service.getById(nasabah.getId());
+            if (nasabah.getAlamat() != null) {
+                temp.setAlamat(nasabah.getAlamat());
+            }
+            if (nasabah.getNomorHandphone() != null) {
+                temp.setNomorHandphone(nasabah.getNomorHandphone());
+            }
+            Nasabah result = service.save(temp);
+            return result;
+        }
+        Nasabah result = service.save(nasabah);
         return result;
     }
-    
+
     @DeleteMapping("{id}")
-    public Map<String,String> delete(@PathVariable int id){
+    public Map<String, String> delete(@PathVariable int id) {
         boolean isSuccess = service.delete(id);
         Map<String, String> status = new HashMap<>();
         if (isSuccess) {
             status.put("status", "200");
             return status;
-        }else{
+        } else {
             return status;
         }
     }
-    
+
 }

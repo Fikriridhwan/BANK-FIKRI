@@ -2,10 +2,7 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="Java_Docker_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>Java.Docker.entities.Item</class>
-    <class>Java.Docker.entities.TransactionItem</class>
-    <class>Java.Docker.entities.Transaction</class>
-    <class>Java.Docker.entities.Supplier</class>
+    <class>Java.Docker.entities.Nasabah</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_javadocker?serverTime=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -5,8 +5,8 @@
  */
 package Java.Docker.services;
 
-import Java.Docker.entities.Item;
-import Java.Docker.repositories.ItemRepositoy;
+import Java.Docker.entities.Nasabah;
+import Java.Docker.repositories.NasabahRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,41 +16,44 @@ import org.springframework.stereotype.Service;
  * @author User
  */
 @Service
-public class ItemService {
-    
-    ItemRepositoy repository;
-    
+public class NasabahService {
+
+    NasabahRepository repository;
+
     @Autowired
-    public ItemService(ItemRepositoy itemRepositoy) {
-        this.repository = itemRepositoy;
+    public NasabahService(NasabahRepository repository) {
+        this.repository = repository;
     }
-    
-    public List<Item> getAll(){
+
+    public List<Nasabah> getAll() {
         return repository.findAll();
     }
-    
-    public Item getById(int id){
+
+    public Nasabah getById(int id) {
         return repository.findById(id).get();
     }
-    
-    public Item save(Item item){
-        Item i = null;
+
+    public Nasabah findByKtp(String ktp) {
+        return repository.findByKtp(ktp);
+    }
+
+    public Nasabah save(Nasabah nasabah) {
+        Nasabah n = null;
         try {
-            return i = repository.save(item);
+            return n = repository.save(nasabah);
         } catch (Exception e) {
-            return i;
+            return n;
         }
     }
-    
-    public boolean delete(int id){
+
+    public boolean delete(int id) {
         try {
-            Item i = getById(id);
-            repository.delete(i);
+            Nasabah n = getById(id);
+            repository.delete(n);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
-    
-    
+
 }
