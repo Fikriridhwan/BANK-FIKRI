@@ -5,6 +5,7 @@
  */
 package Java.Docker.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
@@ -41,6 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Item.findByStock", query = "SELECT i FROM Item i WHERE i.stock = :stock")})
 public class Item implements Serializable {
 
+    @Column(name = "stock")
+    private Integer stock;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,14 +55,13 @@ public class Item implements Serializable {
     private String name;
     @Column(name = "price")
     private Integer price;
-    @Column(name = "stock")
-    private String stock;
     @JsonIgnore
     @JoinColumn(name = "supplier", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Supplier supplier;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonBackReference
     private List<TransactionItem> transactionItemList;
 
     public Item() {
@@ -92,13 +95,6 @@ public class Item implements Serializable {
         this.price = price;
     }
 
-    public String getStock() {
-        return stock;
-    }
-
-    public void setStock(String stock) {
-        this.stock = stock;
-    }
 
     public Supplier getSupplier() {
         return supplier;
@@ -140,6 +136,14 @@ public class Item implements Serializable {
     @Override
     public String toString() {
         return "Java.Docker.entities.Item[ id=" + id + " ]";
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package Java.Docker.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -48,7 +50,9 @@ public class Transaction implements Serializable {
     @Column(name = "order_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "transaction", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<TransactionItem> transactionItemList;
 
     public Transaction() {

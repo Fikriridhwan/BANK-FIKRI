@@ -34,7 +34,6 @@ public class SupplierService {
     }
     
     public Supplier save(Supplier supplier){
-        boolean supplierCheck = getById(supplier.getId()) != null ? true : false;
         Supplier s = null;
         try {
             return s = repository.save(supplier);

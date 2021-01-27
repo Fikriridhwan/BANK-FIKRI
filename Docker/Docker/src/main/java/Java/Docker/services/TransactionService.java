@@ -34,7 +34,6 @@ public class TransactionService {
     }
     
     public Transaction save(Transaction transaction){
-        boolean transactionCheck = getById(transaction.getId()) != null ? true : false;
         Transaction t = null;
         try {
             return t = repository.save(transaction);

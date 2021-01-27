@@ -5,6 +5,7 @@
  */
 package Java.Docker.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -46,10 +47,12 @@ public class TransactionItem implements Serializable {
     @JoinColumn(name = "item", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JsonIgnore
+    @JsonBackReference
     private Item item;
     @JoinColumn(name = "transaction", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JsonIgnore
+    @JsonBackReference
     private Transaction transaction;
 
     public TransactionItem() {

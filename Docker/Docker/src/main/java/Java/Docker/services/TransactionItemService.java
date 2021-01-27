@@ -33,8 +33,7 @@ public class TransactionItemService {
         return repository.findById(id).get();
     }
     
-    public TransactionItem save(TransactionItem transaction){
-        boolean transactionItemCheck = getById(transaction.getId()) != null ? true : false;
+    public TransactionItem save(TransactionItem transaction){        
         TransactionItem t = null;
         try {
             return t = repository.save(transaction);

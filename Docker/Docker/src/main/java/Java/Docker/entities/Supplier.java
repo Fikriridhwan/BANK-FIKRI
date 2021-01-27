@@ -5,6 +5,7 @@
  */
 package Java.Docker.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Date;
@@ -52,6 +53,7 @@ public class Supplier implements Serializable {
     @Column(name = "join_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date joinDate;
+    @JsonIgnore
     @OneToMany(mappedBy = "supplier", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Item> itemList;
@@ -59,7 +61,7 @@ public class Supplier implements Serializable {
     public Supplier() {
     }
 
-    public Supplier(Integer id) {
+        public Supplier(Integer id) {
         this.id = id;
     }
 
