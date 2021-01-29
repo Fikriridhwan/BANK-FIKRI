@@ -12,7 +12,7 @@ FROM openjdk:8-jdk-alpine
 
 EXPOSE 8080
 
-COPY --from=build target/Docker-0.0.1-SNAPSHOT.jar Docker-0.0.1-SNAPSHOT.jar.jar
+COPY --from=build target/docker-java.jar docker-java.jar
 #VOLUME /tmp
 #ADD target/Docker-0.0.1-SNAPSHOT.jar app.jar
 #COPY ./target/Docker-0.0.1-SNAPSHOT.jar /usr/app/
@@ -20,5 +20,5 @@ COPY --from=build target/Docker-0.0.1-SNAPSHOT.jar Docker-0.0.1-SNAPSHOT.jar.jar
 #WORKDIR /usr/app
 #
 #RUN sh -c 'touch Docker-0.0.1-SNAPSHOT.jar'
-ENTRYPOINT ["java","-jar","Docker-0.0.1-SNAPSHOT.jar.jar"]
+ENTRYPOINT ["java","-jar","docker-java.jar"]
 
