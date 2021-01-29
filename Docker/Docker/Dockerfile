@@ -9,8 +9,8 @@ RUN mvn -f /home/app/pom.xml clean package
 
 FROM openjdk:8-jdk-alpine
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY ${JAR_FILE} java-docker.jar
+ENTRYPOINT ["java","-jar","/java-docker.jar"]
 #FROM openjdk:8-jdk-alpine
 #
 #EXPOSE 8080
