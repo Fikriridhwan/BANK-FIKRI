@@ -55,9 +55,9 @@ public class Nasabah implements Serializable {
     @Basic(optional = false)
     @Column(name = "ktp")
     private String ktp;
-    @Basic(optional = true)
-    @Column(name = "npwp")
-    private String npwp;
+//    @Basic(optional = true)
+//    @Column(name = "npwp")
+//    private String npwp;
     
 
     public Nasabah() {
@@ -124,13 +124,13 @@ public class Nasabah implements Serializable {
         this.ktp = ktp;
     }
 
-    public String getNpwp() {
-        return npwp;
-    }
-
-    public void setNpwp(String npwp) {
-        this.npwp = npwp;
-    }
+//    public String getNpwp() {
+//        return npwp;
+//    }
+//
+//    public void setNpwp(String npwp) {
+//        this.npwp = npwp;
+//    }
 
     
     @Override
